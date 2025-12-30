@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Détails Clients</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Détails Clients</h2>
+    <table>
+        <tr>
+            <th>Hostname</th>
+            <th>IP</th>
+            <th>CPU%</th>
+            <th>RAM%</th>
+            <th>Ports ouverts</th>
+            <th>Nombre de logs</th>
+            <th>Dernière mise à jour</th>
+        </tr>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.hostname }}</td>
+            <td>{{ client.ip }}</td>
+            <td>{{ client.cpu_percent }}</td>
+            <td>{{ client.ram_percent }}</td>
+            <td>{{ client.open_ports|join(', ') }}</td>
+            <td>{{ client.logs_count }}</td>
+            <td>{{ client.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('dashboard') }}">Retour au dashboard</a>
+</body>
+</html>
+
